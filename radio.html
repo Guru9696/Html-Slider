@@ -1,0 +1,105 @@
+<!-- <?php
+// Database connection (update with your credentials)
+$conn = new mysqli('localhost', 'username', 'password', 'database');
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get the selected option from the AJAX request
+$selected_option = $_POST['selected_option'];
+
+// Update all records to set status to NULL
+$update_query = "UPDATE options SET status = NULL";
+$conn->query($update_query);
+
+// Update the record that corresponds to the selected option
+$update_selected_query = "UPDATE options SET status = 1 WHERE option_name = '$selected_option'";
+$conn->query($update_selected_query);
+
+echo "The selected option has been updated successfully!";
+
+// Close the connection
+$conn->close();
+?> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Button Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Choose an Option</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Option</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Option 1</td>
+                <td><input type="radio" name="selected_option" value="Option 1" onclick="updateStatus('Option 1')"></td>
+            </tr>
+            <tr>
+                <td>Option 2</td>
+                <td><input type="radio" name="selected_option" value="Option 2" onclick="updateStatus('Option 2')"></td>
+            </tr>
+            <tr>
+                <td>Option 3</td>
+                <td><input type="radio" name="selected_option" value="Option 3" onclick="updateStatus('Option 3')"></td>
+            </tr>
+            <tr>
+                <td>Option 4</td>
+                <td><input type="radio" name="selected_option" value="Option 4" onclick="updateStatus('Option 4')"></td>
+            </tr>
+            <tr>
+                <td>Option 5</td>
+                <td><input type="radio" name="selected_option" value="Option 5" onclick="updateStatus('Option 5')"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function updateStatus(selectedOption) {
+            // AJAX request to update the status in the database
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "update_status.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert("Status updated successfully!");
+                }
+            };
+            xhr.send("selected_option=" + selectedOption);
+        }
+    </script>
+
+</body>
+</html>

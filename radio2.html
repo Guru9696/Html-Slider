@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Switch Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+        input:checked + .slider:before {
+            transform: translateX(14px);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Choose an Option</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Option</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Option 1</td>
+                <td class="text-center">
+                    <label class="switch">
+                        <input type="checkbox" onclick="toggleCheck(this, 1)">
+                        <span class="slider"></span>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>Option 2</td>
+                <td class="text-center">
+                    <label class="switch">
+                        <input type="checkbox" onclick="toggleCheck(this, 2)">
+                        <span class="slider"></span>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>Option 3</td>
+                <td class="text-center">
+                    <label class="switch">
+                        <input type="checkbox" onclick="toggleCheck(this, 3)">
+                        <span class="slider"></span>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>Option 4</td>
+                <td class="text-center">
+                    <label class="switch">
+                        <input type="checkbox" onclick="toggleCheck(this, 4)">
+                        <span class="slider"></span>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>Option 5</td>
+                <td class="text-center">
+                    <label class="switch">
+                        <input type="checkbox" onclick="toggleCheck(this, 5)">
+                        <span class="slider"></span>
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function toggleCheck(checkbox, id) {
+            // If the checkbox is checked, uncheck it
+            if (checkbox.checked) {
+                // Uncheck all other checkboxes
+                document.querySelectorAll('input[type="checkbox"]').forEach(function(elem) {
+                    elem.checked = false;
+                });
+                // Check the selected checkbox
+                checkbox.checked = true;
+            } else {
+                // If the checkbox is unchecked, just leave it unchecked
+                checkbox.checked = false;
+            }
+
+            // Here you would include your AJAX request to update the status in the database
+            // This is a placeholder for the actual AJAX call
+            console.log("Toggling status for option ID:", id);
+        }
+    </script>
+
+</body>
+</html>
