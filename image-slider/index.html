@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive E-Commerce Image Slider</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="slider-container">
+    <div class="slider">
+      <img src="image1.jpg" alt="Product Image 1">
+      <img src="image2.jpg" alt="Product Image 2">
+      <img src="image3.jpg" alt="Product Image 3">
+      <!-- Add more images if needed -->
+    </div>
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    
+    <!-- Navigation Dots -->
+    <div class="dots">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <!-- Add more dots as per the number of images -->
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
